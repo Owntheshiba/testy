@@ -1,0 +1,89 @@
+npm init frog -- -t node
+import { Button, Frog } from 'frog'
+ 
+export const app = new Frog({ title: 'Frog Frame' })
+ 
+app.frame('/', (c) => {
+  const { buttonValue, status } = c
+  return c.res({
+    image: (
+      <div style={{ color: 'white', display: 'flex', fontSize: 60 }}>
+        {status === 'initial' ? (
+          'Select your fruit!'
+        ) : (
+          `Selected: ${buttonValue}`
+        )}
+      </div>
+    ),
+    intents: [
+      <Button value="apple">Apple</Button>,
+      <Button value="banana">Banana</Button>,
+      <Button value="mango">Mango</Button>
+    ]
+  })
+})
+import { serve } from '@hono/node-server'
+import { Button, Frog } from 'frog'
+ 
+export const app = new Frog({ title: 'Frog Frame' })
+ 
+app.frame('/', (c) => {
+  const { buttonValue, status } = c
+  return c.res({
+    image: (
+      <div style={{ color: 'white', display: 'flex', fontSize: 60 }}>
+        {status === 'initial' ? (
+          'Select your fruit!'
+        ) : (
+          `Selected: ${buttonValue}`
+        )}
+      </div>
+    ),
+    intents: [
+      <Button value="apple">Apple</Button>,
+      <Button value="banana">Banana</Button>,
+      <Button value="mango">Mango</Button>
+    ]
+  })
+})
+ 
+serve({
+  fetch: app.fetch,
+  port: 3000,
+})
+console.log(`Server is running on port ${port}`)
+import { serve } from '@hono/node-server'{
+  "scripts": {
+    "dev": "frog dev",
+    "serve": "tsx src/index.tsx"
+  },
+  "dependencies": {
+    "hono": "latest",
+    "frog": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest"
+  }
+}
+ 
+import { serveStatic } from '@hono/node-server/serve-static'
+import { Button, Frog } from 'frog'
+import { devtools } from 'frog/dev'
+ 
+export const app = new Frog({ title: 'Frog Frame' })
+ 
+app.frame('/', (c) => {
+  ...
+})
+ 
+devtools(app, { serveStatic })
+^ Devtools should be called after all frames are defined.
+ 
+serve({
+  fetch: app.fetch,
+  port: 3000,
+})
+console.log(`Server is running on port ${port}`)
+npm run dev
+
+http://localhost:5173/api
